@@ -8,6 +8,6 @@
  * Author URI: http://japh.com.au/
  */
 
-require_once dirname( __FILE__ ) . '/inc/class-loggly-api.php';
+require_once dirname( __FILE__ ) . '/inc/class-stream-loggly-api.php';
 
-$stream_loggly = new Loggly_API();
+$stream_loggly = new Stream_Loggly_API();

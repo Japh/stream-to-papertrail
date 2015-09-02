@@ -1,5 +1,5 @@
 <?php
-class Loggly_API {
+class Stream_Loggly_API {
 
 	public function __construct() {
 
