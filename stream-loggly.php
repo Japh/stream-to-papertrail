@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/japh/
  * Description: Send Stream logs to Loggly for safe-keeping.
  * Author: Japh
- * Version: 1.0
+ * Version: 0.0.1
  * Author URI: http://japh.com.au/
  */
 
