@@ -36,7 +36,7 @@ class Stream_Papertrail_API {
 
 	public function constant_undefined_notice() {
 		$class = 'error';
-		$message = 'The "Stream to Loggly" plugin requires that you set the <code>STREAM_LOGGLY_URL</code> constant in <strong>wp-config.php</strong> for it to work. You can find the value that you need to use in your Loggly dashboard. Look under "Source Setup" -> "Server Side Apps" -> "Direct from Application" -> "HTTP/S Event Endpoint".';
+		$message = 'The "Stream to Papertrail" plugin requires that you set the <code>PAPERTRAIL_HOSTNAME</code> and <code>PAPERTRAIL_PORT</code> constants in your <strong>wp-config.php</strong> file. You can find this information in your <a href="https://papertrailapp.com/account/destinations">Papertrail dashboard</a>. Look under "Account" -> "Log Destinations" for something like <code>logs1.papertrailapp.com:12345</code> (the part before the <code>:</code> is the hostname, and the part after is the port).';
 		echo '<div class="' . $class . '"><p>' . $message . '</p></div>';
 	}
 
