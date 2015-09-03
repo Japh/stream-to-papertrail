@@ -27,6 +27,9 @@ class Stream_Papertrail_API {
 
 	}
 
+	/**
+	 * This method is thanks to Troy Davis, from the Gist located here: https://gist.github.com/troy/2220679
+	 */
 	public function send_remote_syslog( $message, $component = 'stream', $program = 'wordpress' ) {
 		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 		$syslog_message = '<22>' . date( 'M d H:i:s ' ) . $program . ' ' . $component . ': ' . $message;
