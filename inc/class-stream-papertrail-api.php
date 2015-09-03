@@ -1,5 +1,5 @@
 <?php
-class Stream_Loggly_API {
+class Stream_Papertrail_API {
 
 	public function __construct() {
 
