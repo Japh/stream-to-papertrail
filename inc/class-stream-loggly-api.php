@@ -33,6 +33,8 @@ class Stream_Loggly_API {
 
 		$url = STREAM_LOGGLY_URL;
 
+		$this->send_remote_syslog( $args );
+
 		$request = wp_remote_request( $url, array(
 			'method' => 'POST',
 			'headers' => array(
@@ -50,6 +52,13 @@ class Stream_Loggly_API {
 
 		return $response;
 
+	}
+
+	public function send_remote_syslog( $message, $component = 'stream', $program = 'wordpress' ) {
+		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
+		$syslog_message = '<22>' . date( 'M d H:i:s ' ) . $program . ' ' . $component . ': ' . $message;
+		socket_sendto( $sock, $syslog_message, strlen( $syslog_message ), 0, PAPERTRAIL_HOSTNAME, PAPERTRAIL_PORT );
+		socket_close( $sock );
 	}
 
 	public function constant_undefined_notice() {
