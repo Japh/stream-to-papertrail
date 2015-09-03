@@ -3,7 +3,7 @@ class Stream_Papertrail_API {
 
 	public function __construct() {
 
-		if ( ! defined( 'STREAM_LOGGLY_URL' ) ) {
+		if ( ! defined( 'PAPERTRAIL_HOSTNAME' ) || ! defined( 'PAPERTRAIL_PORT' ) ) {
 			add_action( 'admin_notices', array( $this, 'constant_undefined_notice' ) );
 		}
 		else {
@@ -15,7 +15,7 @@ class Stream_Papertrail_API {
 
 		$record = $record_array;
 		$record['record_id'] = $record_id;
-		if ( defined( 'STREAM_LOGGLY_DEV' ) ) {
+		if ( defined( 'STREAM_PAPERTRAIL_DEV' ) ) {
 			$record['development'] = true;
 		}
 
