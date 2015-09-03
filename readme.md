@@ -1,10 +1,10 @@
 # Stream to Papertrail
 
-**Contributors:**		[Japh](https://profiles.wordpress.org/japh) 
-**Requires at least:**	4.3 
-**Tested up to:**		4.3 
-**Stable tag:**			0.0.1 
-**License:**			[GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html) 
+**Contributors:**		[Japh](https://profiles.wordpress.org/japh)  
+**Requires at least:**	4.3  
+**Tested up to:**		4.3  
+**Stable tag:**			0.0.1  
+**License:**			[GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)  
 
 ## Description
 
