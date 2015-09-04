@@ -8,7 +8,43 @@ class Stream_Papertrail_API {
 		}
 		else {
 			add_action( 'wp_stream_record_inserted', array( $this, 'log' ), 10, 2 );
+			add_filter( 'wp_stream_settings_option_fields', array( $this, 'options' ) );
 		}
+	}
+
+	public function options( $fields ) {
+
+		$settings = array(
+			'title' => esc_html__( 'Papertrail', 'stream-papertrail' ),
+			'fields' => array(
+				array(
+					'name'        => 'destination',
+					'title'       => esc_html__( 'Destination', 'stream-papertrail' ),
+					'type'        => 'text',
+					'desc'        => esc_html__( 'You can check your destination on the "Account" page of your Papertrail dashboard, under "Log Destinations". It should be in the following format: logs1.papertrailapp.com:12345', 'stream-papertrail' ),
+					'default'     => '',
+				),
+				array(
+					'name'        => 'program',
+					'title'       => esc_html__( 'Program', 'stream-papertrail' ),
+					'type'        => 'text',
+					'desc'        => esc_html__( '', 'stream-papertrail' ),
+					'default'     => 'wordpress',
+				),
+				array(
+					'name'        => 'component',
+					'title'       => esc_html__( 'Component', 'stream-papertrail' ),
+					'type'        => 'text',
+					'desc'        => esc_html__( '', 'stream-papertrail' ),
+					'default'     => 'stream',
+				),
+			),
+		);
+
+		$fields['papertrail'] = $settings;
+
+		return $fields;
+
 	}
 
 	public function log( $record_id, $record_array ) {
