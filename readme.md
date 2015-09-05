@@ -3,7 +3,7 @@
 **Contributors:**		[Japh](https://profiles.wordpress.org/japh)  
 **Requires at least:**	4.3  
 **Tested up to:**		4.3  
-**Stable tag:**			0.0.1  
+**Stable tag:**			0.0.2  
 **License:**			[GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)  
 
 ## Description
@@ -14,9 +14,16 @@
 
 1. Search for Stream to Papertrail in your WordPress dashboard.
 2. Install the plugin, and activate it.
-3. Set the `PAPERTRAIL_HOSTNAME` and `PAPERTRAIL_PORT` constants in your `wp-config.php` file to the values provided in your Papertrail dashboard (under Account -> Log Destinations ).
+3. Set the Destination for Papertrail on your Stream settings screen.
 
 ## Changelog
+
+### 0.0.2 - September 5, 2015
+
+* Switched from using constants to options on the Stream settings screen
+* Added check for Stream
+
+Props [@Japh](https://github.com/japh)
 
 ### 0.0.1 - September 3, 2015
 

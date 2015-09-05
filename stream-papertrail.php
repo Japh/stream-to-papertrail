@@ -4,10 +4,13 @@
  * Plugin URI: https://github.com/japh/stream-papertrail
  * Description: Send Stream logs to Papertrail for safe-keeping.
  * Author: Japh
- * Version: 0.0.1
+ * Version: 0.0.2
  * Author URI: http://japh.com.au/
  */
 
 require_once dirname( __FILE__ ) . '/inc/class-stream-papertrail-api.php';
 
-$stream_papertrail = new Stream_Papertrail_API();
+function register_stream_papertrail() {
+	$stream_papertrail = new Stream_Papertrail_API();
+}
+add_action( 'init', 'register_stream_papertrail' );
