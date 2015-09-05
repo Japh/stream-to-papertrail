@@ -10,6 +10,7 @@
 
 require_once dirname( __FILE__ ) . '/inc/class-stream-papertrail-api.php';
 
-if ( class_exists( WP_Stream\Plugin ) ) {
+function register_stream_papertrail() {
 	$stream_papertrail = new Stream_Papertrail_API();
 }
+add_action( 'init', 'register_stream_papertrail' );
