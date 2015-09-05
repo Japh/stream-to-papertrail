@@ -1,14 +1,26 @@
 <?php
 class Stream_Papertrail_API {
 
+	public $stream;
+	public $options;
+
 	public function __construct() {
 
-		if ( ! defined( 'PAPERTRAIL_HOSTNAME' ) || ! defined( 'PAPERTRAIL_PORT' ) ) {
-			add_action( 'admin_notices', array( $this, 'constant_undefined_notice' ) );
+		if ( ! class_exists( 'WP_Stream\Plugin' ) ) {
+			add_action( 'admin_notices', array( $this, 'stream_not_found_notice' ) );
+			return false;
+		}
+
+		$this->stream = wp_stream_get_instance();
+		$this->options = $this->stream->settings->options;
+
+		add_filter( 'wp_stream_settings_option_fields', array( $this, 'options' ) );
+
+		if ( empty( $this->options['papertrail_destination'] ) ) {
+			add_action( 'admin_notices', array( $this, 'destination_undefined_notice' ) );
 		}
 		else {
 			add_action( 'wp_stream_record_inserted', array( $this, 'log' ), 10, 2 );
-			add_filter( 'wp_stream_settings_option_fields', array( $this, 'options' ) );
 		}
 	}
 
@@ -67,16 +79,33 @@ class Stream_Papertrail_API {
 	 * This method is thanks to Troy Davis, from the Gist located here: https://gist.github.com/troy/2220679
 	 */
 	public function send_remote_syslog( $message, $component = 'stream', $program = 'wordpress' ) {
-		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
+
+		$destination = array_combine( array( 'hostname', 'port' ), explode( ':', $this->options['papertrail_destination'] ) );
+		$program     = $this->options['papertrail_program'];
+		$component   = $this->options['papertrail_component'];
+
 		$syslog_message = '<22>' . date( 'M d H:i:s ' ) . $program . ' ' . $component . ': ' . $message;
-		socket_sendto( $sock, $syslog_message, strlen( $syslog_message ), 0, PAPERTRAIL_HOSTNAME, PAPERTRAIL_PORT );
+
+		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
+		socket_sendto( $sock, $syslog_message, strlen( $syslog_message ), 0, $destination['hostname'], $destination['port'] );
 		socket_close( $sock );
+
 	}
 
-	public function constant_undefined_notice() {
+	public function destination_undefined_notice() {
+
 		$class = 'error';
-		$message = 'The "Stream to Papertrail" plugin requires that you set the <code>PAPERTRAIL_HOSTNAME</code> and <code>PAPERTRAIL_PORT</code> constants in your <strong>wp-config.php</strong> file. You can find this information in your <a href="https://papertrailapp.com/account/destinations">Papertrail dashboard</a>. Look under "Account" -> "Log Destinations" for something like <code>logs1.papertrailapp.com:12345</code> (the part before the <code>:</code> is the hostname, and the part after is the port).';
+		$message = 'The "Stream to Papertrail" plugin requires that you set a Destination in your <a href="' . admin_url( 'admin.php?page=wp_stream_settings' ) . '">Stream Settings</a> before it can log to Papertrail.';
 		echo '<div class="' . $class . '"><p>' . $message . '</p></div>';
+
+	}
+
+	public function stream_not_found_notice() {
+
+		$class = 'error';
+		$message = 'The "Stream to Papertrail" plugin requires the <a href="https://wordpress.org/plugins/stream/">Stream</a> plugin to be activated before it can log to Papertrail.';
+		echo '<div class="' . $class . '"><p>' . $message . '</p></div>';
+
 	}
 
 }
