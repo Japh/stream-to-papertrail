@@ -50,6 +50,14 @@ class Stream_Papertrail_API {
 					'desc'        => esc_html__( '', 'stream-papertrail' ),
 					'default'     => 'stream',
 				),
+				array(
+					'name'        => 'enable_colorization',
+					'title'       => esc_html__( 'Colorization', 'stream-papertrail' ),
+					'type'        => 'checkbox',
+					'desc'        => esc_html__( '', 'stream-papertrail' ),
+					'after_field' => esc_html__( 'Enabled', 'stream-papertrail' ),
+					'default'     => 1,
+				),
 			),
 		);
 
@@ -94,7 +102,9 @@ class Stream_Papertrail_API {
 
 	public function format( $message ) {
 
-		$message = $this->colorise_json( $message );
+		if ( ! empty( $this->options['papertrail_enable_colorization'] ) && $this->options['papertrail_enable_colorization'] === 1 ) {
+			$message = $this->colorise_json( $message );
+		}
 		return $message;
 
 	}
