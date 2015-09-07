@@ -3,7 +3,7 @@ Contributors:		Japh
 Tags:				papertrail, stream, logging, hosted, actions, activity, activity log, activity logs, admin actions, analytics, audit, audit log, audit logs, change, changes, log, logs, stream, tracking, troubleshooting, wp stream
 Requires at least:	4.3
 Tested up to:		4.3
-Stable tag:			0.0.2
+Stable tag:			0.0.3
 License:			GPLv2 or later
 License URI:		https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,12 @@ Send your Stream records to Papertrail for safe-keeping.
 3. Set the Destination for Papertrail on your Stream settings screen.
 
 == Changelog ==
+
+= 0.0.3 - September 7, 2015 =
+
+* Added ANSI escape codes for colourisation
+
+Props [@Japh](https://github.com/japh)
 
 = 0.0.2 - September 5, 2015 =
 

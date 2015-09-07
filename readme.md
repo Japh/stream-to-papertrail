@@ -3,7 +3,7 @@
 **Contributors:**		[Japh](https://profiles.wordpress.org/japh)  
 **Requires at least:**	4.3  
 **Tested up to:**		4.3  
-**Stable tag:**			0.0.2  
+**Stable tag:**			0.0.3  
 **License:**			[GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)  
 
 ## Description
@@ -17,6 +17,12 @@
 3. Set the Destination for Papertrail on your Stream settings screen.
 
 ## Changelog
+
+### 0.0.3 - September 7, 2015
+
+* Added ANSI escape codes for colourisation
+
+Props [@Japh](https://github.com/japh)
 
 ### 0.0.2 - September 5, 2015
 
