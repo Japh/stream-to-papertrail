@@ -15,6 +15,8 @@ Send your Stream records to Papertrail for safe-keeping.
 
 [Stream](https://wordpress.org/plugins/stream/) records activity on your WordPress site in your WordPress database. This plugin allows you to also send those records to [Papertrail](https://papertrailapp.com/) for safe-keeping (and from there, you can also archive to Amazon S3).
 
+_Development of Stream to Papertrail takes place on GitHub. If you have problems or suggestions, please [create an issue](https://github.com/Japh/stream-to-papertrail/issues) there._
+
 ## Installation ##
 
 1. Search for Stream to Papertrail in your WordPress dashboard.
