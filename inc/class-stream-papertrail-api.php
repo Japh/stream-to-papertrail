@@ -84,11 +84,63 @@ class Stream_Papertrail_API {
 		$program     = $this->options['papertrail_program'];
 		$component   = $this->options['papertrail_component'];
 
-		$syslog_message = '<22>' . date( 'M d H:i:s ' ) . $program . ' ' . $component . ': ' . $message;
+		$syslog_message = '<22>' . date( 'M d H:i:s ' ) . $program . ' ' . $component . ': ' . $this->format( $message );
 
 		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 		socket_sendto( $sock, $syslog_message, strlen( $syslog_message ), 0, $destination['hostname'], $destination['port'] );
 		socket_close( $sock );
+
+	}
+
+	public function format( $message ) {
+
+		$message = $this->colorise_json( $message );
+		return $message;
+
+	}
+
+	public function colorise_json( $json ) {
+
+		$seq = array(
+			'reset' => "\033[0m",
+			'color' => "\033[1;%dm",
+			'bold'  => "\033[1m",
+		);
+
+		$fcolor = array(
+			'black'   => "\033[30m",
+			'red'     => "\033[31m",
+			'green'   => "\033[32m",
+			'yellow'  => "\033[33m",
+			'blue'    => "\033[34m",
+			'magenta' => "\033[35m",
+			'cyan'    => "\033[36m",
+			'white'   => "\033[37m",
+		);
+
+		$bcolor = array(
+			'black'   => "\033[40m",
+			'red'     => "\033[41m",
+			'green'   => "\033[42m",
+			'yellow'  => "\033[43m",
+			'blue'    => "\033[44m",
+			'magenta' => "\033[45m",
+			'cyan'    => "\033[46m",
+			'white'   => "\033[47m",
+		);
+
+		$output = $json;
+		$output = preg_replace( '/(":)([0-9]+)/', '$1' . $fcolor['magenta'] . '$2' . $seq['reset'], $output );
+		$output = preg_replace( '/(":)(true|false)/', '$1' . $fcolor['magenta'] . '$2' . $seq['reset'], $output );
+		$output = str_replace( '{"', '{' . $fcolor['green'] . '"', $output );
+		$output = str_replace( ',"', ',' . $fcolor['green'] . '"', $output );
+		$output = str_replace( '":', '"' . $seq['reset'] . ':', $output );
+		$output = str_replace( ':"', ':' . $fcolor['green'] . '"', $output );
+		$output = str_replace( '",', '"' . $seq['reset'] . ',', $output );
+		$output = str_replace( '",', '"' . $seq['reset'] . ',', $output );
+		$output = $seq['reset'] . $output . $seq['reset'];
+
+		return $output;
 
 	}
 
