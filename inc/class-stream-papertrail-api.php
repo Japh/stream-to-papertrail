@@ -157,7 +157,7 @@ class Stream_Papertrail_API {
 	public function destination_undefined_notice() {
 
 		$class = 'error';
-		$message = 'The "Stream to Papertrail" plugin requires that you set a Destination in your <a href="' . admin_url( 'admin.php?page=wp_stream_settings' ) . '">Stream Settings</a> before it can log to Papertrail.';
+		$message = 'The "Stream to Papertrail" plugin requires that you set a Destination in the new Papertrail panel of your <a href="' . admin_url( 'admin.php?page=wp_stream_settings' ) . '">Stream Settings</a> before it can log to Papertrail.';
 		echo '<div class="' . $class . '"><p>' . $message . '</p></div>';
 
 	}
