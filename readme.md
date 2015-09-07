@@ -8,7 +8,7 @@ Send your Stream records to Papertrail for safe-keeping.
 **Tags:** [papertrail](https://wordpress.org/plugins/tags/papertrail), [stream](https://wordpress.org/plugins/tags/stream), [logging](https://wordpress.org/plugins/tags/logging), [hosted](https://wordpress.org/plugins/tags/hosted), [actions](https://wordpress.org/plugins/tags/actions), [activity](https://wordpress.org/plugins/tags/activity), [activity log](https://wordpress.org/plugins/tags/activity log), [activity logs](https://wordpress.org/plugins/tags/activity logs), [admin actions](https://wordpress.org/plugins/tags/admin actions), [analytics](https://wordpress.org/plugins/tags/analytics), [audit](https://wordpress.org/plugins/tags/audit), [audit log](https://wordpress.org/plugins/tags/audit log), [audit logs](https://wordpress.org/plugins/tags/audit logs), [change](https://wordpress.org/plugins/tags/change), [changes](https://wordpress.org/plugins/tags/changes), [log](https://wordpress.org/plugins/tags/log), [logs](https://wordpress.org/plugins/tags/logs), [stream](https://wordpress.org/plugins/tags/stream), [tracking](https://wordpress.org/plugins/tags/tracking), [troubleshooting](https://wordpress.org/plugins/tags/troubleshooting), [wp stream](https://wordpress.org/plugins/tags/wp stream)  
 **Requires at least:** 4.3  
 **Tested up to:** 4.3  
-**Stable tag:** 0.0.3  
+**Stable tag:** 0.0.4  
 **License:** [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)  
 
 ## Description ##
@@ -22,6 +22,11 @@ Send your Stream records to Papertrail for safe-keeping.
 3. Set the Destination for Papertrail on your Stream settings screen.
 
 ## Changelog ##
+
+### 0.0.4 - September 7, 2015 ###
+* Added option to enable/disable colourisation
+
+Props [@Japh](https://github.com/japh)
 
 ### 0.0.3 - September 7, 2015 ###
 * Added ANSI escape codes for colourisation
