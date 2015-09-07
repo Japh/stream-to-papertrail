@@ -1,6 +1,6 @@
 # Stream to Papertrail
 
-**Contributors:**		[Japh](https://profiles.wordpress.org/japh)  
+**Contributors:**		[japh](https://profiles.wordpress.org/japh)  
 **Requires at least:**	4.3  
 **Tested up to:**		4.3  
 **Stable tag:**			0.0.3  
