@@ -23,6 +23,12 @@ _Development of Stream to Papertrail takes place on GitHub. If you have problems
 2. Install the plugin, and activate it.
 3. Set the Destination for Papertrail on your Stream settings screen.
 
+## Screenshots ##
+
+### Papertrail's display of colourised logs
+
+![Papertrail's display of colourised logs](assets/screenshot-1.png)
+
 ## Changelog ##
 
 ### 0.0.5 - September 8, 2015 ###
