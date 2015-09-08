@@ -37,20 +37,6 @@ class Stream_Papertrail_API {
 					'default'     => '',
 				),
 				array(
-					'name'        => 'program',
-					'title'       => esc_html__( 'Program', 'stream-papertrail' ),
-					'type'        => 'text',
-					'desc'        => esc_html__( '', 'stream-papertrail' ),
-					'default'     => 'wordpress',
-				),
-				array(
-					'name'        => 'component',
-					'title'       => esc_html__( 'Component', 'stream-papertrail' ),
-					'type'        => 'text',
-					'desc'        => esc_html__( '', 'stream-papertrail' ),
-					'default'     => 'stream',
-				),
-				array(
 					'name'        => 'enable_colorization',
 					'title'       => esc_html__( 'Colorization', 'stream-papertrail' ),
 					'type'        => 'checkbox',
@@ -89,8 +75,6 @@ class Stream_Papertrail_API {
 	public function send_remote_syslog( $message, $component = 'stream', $program = 'wordpress' ) {
 
 		$destination = array_combine( array( 'hostname', 'port' ), explode( ':', $this->options['papertrail_destination'] ) );
-		$program     = $this->options['papertrail_program'];
-		$component   = $this->options['papertrail_component'];
 
 		$program     = parse_url( is_multisite() ? network_site_url() : site_url(), PHP_URL_HOST );
 		$component   = sanitize_title( 'stream-' . $message['connector'] );
