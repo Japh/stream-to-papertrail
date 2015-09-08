@@ -8,7 +8,7 @@ Send your Stream records to Papertrail for safe-keeping.
 **Tags:** [papertrail](https://wordpress.org/plugins/tags/papertrail), [stream](https://wordpress.org/plugins/tags/stream), [logging](https://wordpress.org/plugins/tags/logging), [hosted](https://wordpress.org/plugins/tags/hosted), [actions](https://wordpress.org/plugins/tags/actions), [activity](https://wordpress.org/plugins/tags/activity), [activity log](https://wordpress.org/plugins/tags/activity log), [activity logs](https://wordpress.org/plugins/tags/activity logs), [admin actions](https://wordpress.org/plugins/tags/admin actions), [analytics](https://wordpress.org/plugins/tags/analytics), [audit](https://wordpress.org/plugins/tags/audit), [audit log](https://wordpress.org/plugins/tags/audit log), [audit logs](https://wordpress.org/plugins/tags/audit logs), [change](https://wordpress.org/plugins/tags/change), [changes](https://wordpress.org/plugins/tags/changes), [log](https://wordpress.org/plugins/tags/log), [logs](https://wordpress.org/plugins/tags/logs), [stream](https://wordpress.org/plugins/tags/stream), [tracking](https://wordpress.org/plugins/tags/tracking), [troubleshooting](https://wordpress.org/plugins/tags/troubleshooting), [wp stream](https://wordpress.org/plugins/tags/wp stream)  
 **Requires at least:** 4.3  
 **Tested up to:** 4.3  
-**Stable tag:** 0.0.4  
+**Stable tag:** 0.0.5  
 **License:** [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)  
 
 ## Description ##
@@ -24,6 +24,12 @@ _Development of Stream to Papertrail takes place on GitHub. If you have problems
 3. Set the Destination for Papertrail on your Stream settings screen.
 
 ## Changelog ##
+
+### 0.0.5 - September 8, 2015 ###
+* Made admin notices and explanation of Destination option clearer
+* Removed 'program' and 'component' options in favour of using existing information
+
+Props [@Japh](https://github.com/japh), [@sirjonathan](https://github.com/sirjonathan), [@Troy](https://github.com/troy)
 
 ### 0.0.4 - September 7, 2015 ###
 * Added option to enable/disable colourisation
