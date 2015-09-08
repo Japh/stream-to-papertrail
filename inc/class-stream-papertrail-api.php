@@ -79,7 +79,7 @@ class Stream_Papertrail_API {
 			$record['meta']['user_meta'] = unserialize( $record['meta']['user_meta'] );
 		}
 
-		$this->send_remote_syslog( json_encode( $record ) );
+		$this->send_remote_syslog( $record );
 
 	}
 
@@ -91,6 +91,11 @@ class Stream_Papertrail_API {
 		$destination = array_combine( array( 'hostname', 'port' ), explode( ':', $this->options['papertrail_destination'] ) );
 		$program     = $this->options['papertrail_program'];
 		$component   = $this->options['papertrail_component'];
+
+		$program     = parse_url( is_multisite() ? network_site_url() : site_url(), PHP_URL_HOST );
+		$component   = sanitize_title( 'stream-' . $message['connector'] );
+
+		$message = json_encode( $message );
 
 		$syslog_message = '<22>' . date( 'M d H:i:s ' ) . $program . ' ' . $component . ': ' . $this->format( $message );
 
