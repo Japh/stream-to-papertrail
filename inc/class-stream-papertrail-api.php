@@ -33,7 +33,7 @@ class Stream_Papertrail_API {
 					'name'        => 'destination',
 					'title'       => esc_html__( 'Destination', 'stream-papertrail' ),
 					'type'        => 'text',
-					'desc'        => wp_kses_post( 'Find your Destination in the "<a href="https://papertrailapp.com/account/destinations" target="_blank">Log Destinations</a>" section of your Papertrail "Account" page. It will be in the following format: logs1.papertrailapp.com:12345' ),
+					'desc'        => wp_kses_post( 'Find your Destination in the "<a href="https://papertrailapp.com/account/destinations" target="_blank">Log Destinations</a>" section of your Papertrail "Account" page. It will be in the following format: <code>logs1.papertrailapp.com:12345</code>' ),
 					'default'     => '',
 				),
 				array(
