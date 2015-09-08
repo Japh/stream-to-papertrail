@@ -33,7 +33,7 @@ class Stream_Papertrail_API {
 					'name'        => 'destination',
 					'title'       => esc_html__( 'Destination', 'stream-papertrail' ),
 					'type'        => 'text',
-					'desc'        => esc_html__( 'You can check your destination on the "Account" page of your Papertrail dashboard, under "Log Destinations". It should be in the following format: logs1.papertrailapp.com:12345', 'stream-papertrail' ),
+					'desc'        => wp_kses_post( 'Find your Destination in the "<a href="https://papertrailapp.com/account/destinations" target="_blank">Log Destinations</a>" section of your Papertrail "Account" page. It will be in the following format: <code>logs1.papertrailapp.com:12345</code>' ),
 					'default'     => '',
 				),
 				array(
@@ -157,7 +157,7 @@ class Stream_Papertrail_API {
 	public function destination_undefined_notice() {
 
 		$class = 'error';
-		$message = 'The "Stream to Papertrail" plugin requires that you set a Destination in the new Papertrail panel of your <a href="' . admin_url( 'admin.php?page=wp_stream_settings' ) . '">Stream Settings</a> before it can log to Papertrail.';
+		$message = 'To activate the "Stream to Papertrail" plugin, visit the Papertrail panel in <a href="' . admin_url( 'admin.php?page=wp_stream_settings' ) . '">Stream Settings</a> and set a Destination.';
 		echo '<div class="' . $class . '"><p>' . $message . '</p></div>';
 
 	}
