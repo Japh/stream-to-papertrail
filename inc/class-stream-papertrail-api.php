@@ -33,22 +33,8 @@ class Stream_Papertrail_API {
 					'name'        => 'destination',
 					'title'       => esc_html__( 'Destination', 'stream-papertrail' ),
 					'type'        => 'text',
-					'desc'        => esc_html__( 'You can check your destination on the "Account" page of your Papertrail dashboard, under "Log Destinations". It should be in the following format: logs1.papertrailapp.com:12345', 'stream-papertrail' ),
+					'desc'        => wp_kses_post( 'Find your Destination in the "<a href="https://papertrailapp.com/account/destinations" target="_blank">Log Destinations</a>" section of your Papertrail "Account" page. It will be in the following format: <code>logs1.papertrailapp.com:12345</code>' ),
 					'default'     => '',
-				),
-				array(
-					'name'        => 'program',
-					'title'       => esc_html__( 'Program', 'stream-papertrail' ),
-					'type'        => 'text',
-					'desc'        => esc_html__( '', 'stream-papertrail' ),
-					'default'     => 'wordpress',
-				),
-				array(
-					'name'        => 'component',
-					'title'       => esc_html__( 'Component', 'stream-papertrail' ),
-					'type'        => 'text',
-					'desc'        => esc_html__( '', 'stream-papertrail' ),
-					'default'     => 'stream',
 				),
 				array(
 					'name'        => 'enable_colorization',
@@ -79,7 +65,7 @@ class Stream_Papertrail_API {
 			$record['meta']['user_meta'] = unserialize( $record['meta']['user_meta'] );
 		}
 
-		$this->send_remote_syslog( json_encode( $record ) );
+		$this->send_remote_syslog( $record );
 
 	}
 
@@ -89,8 +75,11 @@ class Stream_Papertrail_API {
 	public function send_remote_syslog( $message, $component = 'stream', $program = 'wordpress' ) {
 
 		$destination = array_combine( array( 'hostname', 'port' ), explode( ':', $this->options['papertrail_destination'] ) );
-		$program     = $this->options['papertrail_program'];
-		$component   = $this->options['papertrail_component'];
+
+		$program     = parse_url( is_multisite() ? network_site_url() : site_url(), PHP_URL_HOST );
+		$component   = sanitize_title( 'stream-' . $message['connector'] );
+
+		$message = json_encode( $message );
 
 		$syslog_message = '<22>' . date( 'M d H:i:s ' ) . $program . ' ' . $component . ': ' . $this->format( $message );
 
@@ -157,7 +146,7 @@ class Stream_Papertrail_API {
 	public function destination_undefined_notice() {
 
 		$class = 'error';
-		$message = 'The "Stream to Papertrail" plugin requires that you set a Destination in your <a href="' . admin_url( 'admin.php?page=wp_stream_settings' ) . '">Stream Settings</a> before it can log to Papertrail.';
+		$message = 'To activate the "Stream to Papertrail" plugin, visit the Papertrail panel in <a href="' . admin_url( 'admin.php?page=wp_stream_settings' ) . '">Stream Settings</a> and set a Destination.';
 		echo '<div class="' . $class . '"><p>' . $message . '</p></div>';
 
 	}

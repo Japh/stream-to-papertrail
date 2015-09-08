@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/japh/stream-papertrail
  * Description: Send Stream logs to Papertrail for safe-keeping.
  * Author: Japh
- * Version: 0.0.4
+ * Version: 0.0.5
  * Author URI: http://japh.com.au/
  */
 
